@@ -16,6 +16,7 @@ const HomeScreen = () => {
   const [isMicOn, setIsMicOn] = useState(false);
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const speechStartHandler = e => {};
 
   const speechEndHandler = e => {
@@ -31,6 +32,8 @@ const HomeScreen = () => {
   };
 
   const startRecording = async () => {
+    Tts.stop();
+    setIsSpeaking(false);
     try {
       setIsMicOn(true);
       await Voice.start('en-US');
@@ -92,7 +95,13 @@ const HomeScreen = () => {
   const startSpeaking = message => {
     if (!message.content.includes('https://')) {
       Tts.speak(message.content);
+      setIsSpeaking(true);
     }
+  };
+
+  const stopSpeaking = () => {
+    Tts.stop();
+    setIsSpeaking(false);
   };
 
   useEffect(() => {
@@ -212,7 +221,7 @@ const HomeScreen = () => {
             </Text>
           </View>
         )}
-        <View className="flex flex-row justify-center items-center border-t-2 border-[#b298f1] rounded-t-xl">
+        <View className="flex flex-row border-t-2 border-[#b298f1] rounded-t-xl justify-center items-center">
           <Pressable
             onPress={() => setIsMicOn(!isMicOn)}
             style={({pressed}) => pressed && {opacity: 0.5}}
@@ -236,6 +245,14 @@ const HomeScreen = () => {
             )}
           </Pressable>
         </View>
+        {isSpeaking && (
+          <Pressable
+            onPress={stopSpeaking}
+            style={({pressed}) => pressed && {opacity: 0.5}}
+            className="absolute right-10 bottom-12 border border-[#b298f1] justify-center items-center p-2 rounded-xl">
+            <Text className="text-white text-lg font-bold">Stop</Text>
+          </Pressable>
+        )}
       </View>
     </View>
   );

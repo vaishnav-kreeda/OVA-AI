@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API = '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';
+// const API = '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';
+const API = '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';
+
 export const client = axios.create({
   headers: {
     Authorization: `Bearer ${API}`,
