@@ -20,6 +20,7 @@ const HomeScreen = () => {
   const speechStartHandler = e => {};
 
   const speechEndHandler = e => {
+    setIsSpeaking(false);
     setIsMicOn(false);
   };
 
@@ -110,9 +111,9 @@ const HomeScreen = () => {
     Voice.onSpeechResults = speechResultsHandler;
     Voice.onSpeechError = speechErrorHandler;
 
-    Tts.addEventListener('tts-start', event => console.log('start', event));
-    Tts.addEventListener('tts-finish', event => console.log('finish', event));
-    Tts.addEventListener('tts-cancel', event => console.log('cancel', event));
+    // Tts.addEventListener('tts-start', event => console.log('start', event));
+    Tts.addEventListener('tts-finish', event => setIsSpeaking(false));
+    // Tts.addEventListener('tts-cancel', event => console.log('cancel', event));
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
