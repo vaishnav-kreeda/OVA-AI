@@ -11,6 +11,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import Voice from '@react-native-community/voice';
 import {openAi} from '../api/openAi';
 import Tts from 'react-native-tts';
+import {
+  PorcupineManager,
+  BuiltInKeywords,
+} from '@picovoice/porcupine-react-native';
 
 const HomeScreen = () => {
   const [isMicOn, setIsMicOn] = useState(false);
@@ -18,27 +22,51 @@ const HomeScreen = () => {
   const scrollRef = useRef();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const speechStartHandler = e => {};
+  // const accessKey = 'DdqQm9VKSVkRg6OvpB6YuFppRrGD//JjxJlXYpmZOj4h/VQpjjjEXQ==';
+  // const accessKey = '4bOkYAgmT2xTenXLx2Aeo0WUEB32uhqjRleSWG5s9ehaCF07GDiSrQ==';
+  const accessKey = 'v9PM4h852R0KJ7vkerSf0EhbOv6gtw/cq+uLP4kp6Kax8DfXSm5NFA==';
+  // let porcupineManagerState = '';
+  // useref for porcupine manager
 
+  let porcupineManagerState = useRef(null);
+
+  const detectionCallback = async keywordIndex => {
+    console.log('detectionCallback', keywordIndex);
+    console.log(keywordIndex);
+
+    if (keywordIndex === 0) {
+      // 'picovoice' detected
+      await porcupineManagerState.current.stop();
+      await Voice.start('en-US');
+      console.log('Keyword "llll" detected');
+      console.log(keywordIndex);
+    }
+  };
   const speechEndHandler = e => {
+    console.log('speechEndHandler', e);
     setIsSpeaking(false);
     setIsMicOn(false);
   };
 
   const speechResultsHandler = e => {
+    console.log('speechResultsHandler', e);
     getAiResponse(e.value[0]);
   };
 
   const speechErrorHandler = e => {
+    console.log('speechErrorHandler', e);
     setIsMicOn(false);
   };
 
   const startRecording = async () => {
+    console.log('start recording');
     Tts.stop();
     setIsSpeaking(false);
     try {
       setIsMicOn(true);
-      await Voice.start('en-US');
+      await porcupineManagerState.current.start();
     } catch (e) {
+      console.log('error in start recording', e);
       setIsMicOn(false);
       ToastAndroid.showWithGravity(
         'Something went wrong, please try again',
@@ -49,9 +77,10 @@ const HomeScreen = () => {
   };
 
   const stopRecording = async () => {
+    console.log('stop recording');
     try {
       setIsMicOn(false);
-      await Voice.stop();
+      await porcupineManagerState.current.stop();
     } catch (e) {
       ToastAndroid.showWithGravity(
         'Something went wrong, please try again',
@@ -67,7 +96,8 @@ const HomeScreen = () => {
     }, 1000);
   };
 
-  const getAiResponse = result => {
+  const getAiResponse = async result => {
+    console.log('result in get ai response', result);
     if (result.trim().length > 0) {
       setMessages(prevMessages => {
         let newMessages = [
@@ -91,6 +121,8 @@ const HomeScreen = () => {
         return newMessages;
       });
     }
+    // await porcupineManagerState.start();
+    // setIsMicOn(true);
   };
 
   const startSpeaking = message => {
@@ -100,9 +132,22 @@ const HomeScreen = () => {
     }
   };
 
-  const stopSpeaking = () => {
+  const stopSpeaking = async () => {
     Tts.stop();
     setIsSpeaking(false);
+    startRecording();
+  };
+
+  const processErrorCallback = error => {
+    console.error(error);
+  };
+
+  const speachEndCallback = async () => {
+    // console.log('speachEndCallback');
+    // setIsSpeaking(false);
+    // // setIsMicOn(false);
+    // startRecording();
+    stopSpeaking();
   };
 
   useEffect(() => {
@@ -111,11 +156,28 @@ const HomeScreen = () => {
     Voice.onSpeechResults = speechResultsHandler;
     Voice.onSpeechError = speechErrorHandler;
 
+    const createPorcupineManager = async () => {
+      try {
+        const manager = await PorcupineManager.fromBuiltInKeywords(
+          accessKey,
+          [BuiltInKeywords.HEY_SIRI],
+          detectionCallback,
+          processErrorCallback,
+        );
+        porcupineManagerState.current = manager;
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    createPorcupineManager();
+
     // Tts.addEventListener('tts-start', event => console.log('start', event));
-    Tts.addEventListener('tts-finish', event => setIsSpeaking(false));
+    Tts.addEventListener('tts-finish', event => speachEndCallback);
     // Tts.addEventListener('tts-cancel', event => console.log('cancel', event));
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
+      porcupineManagerState.current && porcupineManagerState.current.delete();
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

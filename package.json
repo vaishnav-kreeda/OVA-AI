@@ -10,6 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@picovoice/picovoice-react-native": "^3.0.0",
+    "@picovoice/porcupine-react-native": "^3.0.0",
+    "@picovoice/react-native-voice-processor": "^1.2.0",
+    "@picovoice/rhino-react-native": "^3.0.0",
     "@react-native-community/voice": "^1.1.9",
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
