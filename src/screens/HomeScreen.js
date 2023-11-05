@@ -24,7 +24,7 @@ const HomeScreen = () => {
   const speechStartHandler = e => {};
   // const accessKey = 'DdqQm9VKSVkRg6OvpB6YuFppRrGD//JjxJlXYpmZOj4h/VQpjjjEXQ==';
   // const accessKey = '4bOkYAgmT2xTenXLx2Aeo0WUEB32uhqjRleSWG5s9ehaCF07GDiSrQ==';
-  const accessKey = 'v9PM4h852R0KJ7vkerSf0EhbOv6gtw/cq+uLP4kp6Kax8DfXSm5NFA==';
+  const accessKey = 'v9PM4h852R0KJ7vkerSf0EhbOv6gtw/cq+uLP4kp6Kax8DfXSm5NFA==-';
   // let porcupineManagerState = '';
   // useref for porcupine manager
 
