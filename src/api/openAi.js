@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// const API = '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';
+const API = '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-';
 // const API = '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';
-const API = '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';
+// const API = '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';
 
 export const client = axios.create({
   headers: {
@@ -13,22 +13,6 @@ export const client = axios.create({
 
 export const openAi = async (prompt, messages) => {
   try {
-    // const result = await client.post(
-    //   'https://api.openai.com/v1/chat/completions',
-    //   {
-    //     model: 'gpt-3.5-turbo',
-    //     messages: [
-    //       {
-    //         role: 'user',
-    //         content: `Does this message want to generate an AI picture, image, art or anything similar? ${prompt} . Simply answer with a yes or no.`,
-    //       },
-    //     ],
-    //   },
-    // );
-    // console.log('result in open ai api 34', result.data?.choices[0]?.message);
-    // let doesNeedImage = result.data?.choices[0]?.message?.content
-    //   .toLowerCase()
-    //   .includes('yes');
 
     return gpt3(prompt, messages || []);
   } catch (err) {
