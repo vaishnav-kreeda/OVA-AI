@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 
 const Signupscreen = ({navigation}) => {
@@ -13,7 +14,10 @@ const Signupscreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create Account</Text>
+      <View style={styles.headerBlock}>
+        <Text style={styles.heading}>Create Account</Text>
+        <Text style={styles.subheading}>Join OvaDrive in seconds</Text>
+      </View>
 
       <Text style={styles.label}>Full Name</Text>
       <TextInput
@@ -46,8 +50,14 @@ const Signupscreen = ({navigation}) => {
         onChangeText={setPassword}
       />
 
-      <TouchableOpacity style={styles.primaryButton} onPress={onSignup}>
-        <Text style={styles.primaryButtonText}>Sign Up</Text>
+      <TouchableOpacity activeOpacity={0.9} onPress={onSignup}>
+        <LinearGradient
+          colors={['#5d1df3', '#b298f1']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          style={styles.primaryButton}>
+          <Text style={styles.primaryButtonText}>Sign Up</Text>
+        </LinearGradient>
       </TouchableOpacity>
 
       <View style={styles.footerRow}>

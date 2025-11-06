@@ -33,7 +33,7 @@ const IntroScreen = () => {
       </Text>
       <Pressable
         className="w-[80%] flex flex-row border border-white rounded-full mt-10 justify-center items-center"
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate('Login')}
         style={({pressed}) => pressed && {opacity: 0.5}}>
         <Text className="text-white text-2xl text-center font-bold p-2">
           Let's get start

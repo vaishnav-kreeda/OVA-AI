@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  // email login only
 
   const onLogin = () => {
     // TODO: integrate Firebase Auth
@@ -13,7 +14,10 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign In</Text>
+      <View style={styles.headerBlock}>
+        <Text style={styles.heading}>Welcome Back</Text>
+        <Text style={styles.subheading}>Sign in to continue</Text>
+      </View>
 
       <Text style={styles.label}>Email</Text>
       <TextInput
@@ -36,42 +40,17 @@ const LoginScreen = ({navigation}) => {
           value={password}
           onChangeText={setPassword}
         />
-        <TouchableOpacity activeOpacity={0.7}>
-          <Text style={styles.eyeIcon}>👁️</Text>
-        </TouchableOpacity>
       </View>
 
-      <View style={styles.rowBetween}>
-        <TouchableOpacity onPress={() => setRememberMe(!rememberMe)}>
-          <Text style={styles.rememberText}>
-            {rememberMe ? '☑' : '☐'} Remember me
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ForgotPassword')}
-          activeOpacity={0.7}>
-          <Text style={styles.link}>Forgot password?</Text>
-        </TouchableOpacity>
-      </View>
-
-      <TouchableOpacity style={styles.primaryButton} onPress={onLogin}>
-        <Text style={styles.primaryButtonText}>Sign In</Text>
+      <TouchableOpacity activeOpacity={0.9} onPress={onLogin}>
+        <LinearGradient
+          colors={['#5d1df3', '#b298f1']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          style={styles.primaryButton}>
+          <Text style={styles.primaryButtonText}>Sign In</Text>
+        </LinearGradient>
       </TouchableOpacity>
-
-      <View style={styles.orRow}>
-        <View style={styles.separator} />
-        <Text style={styles.orText}>Or Sign In with</Text>
-        <View style={styles.separator} />
-      </View>
-
-      <View style={styles.socialRow}>
-        <TouchableOpacity style={styles.socialButton} activeOpacity={0.8}>
-          <Text style={styles.socialText}>Facebook</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton} activeOpacity={0.8}>
-          <Text style={styles.socialText}>Google</Text>
-        </TouchableOpacity>
-      </View>
 
       <View style={styles.footerRow}>
         <Text style={styles.footerText}>Don’t have an account? </Text>
