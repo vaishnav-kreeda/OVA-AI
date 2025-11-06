@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, LogBox} from 'react-native';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 import RootNavigator from './src/Navigation/navigationScreen';
 
@@ -16,6 +16,9 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    LogBox.ignoreLogs([
+      'new NativeEventEmitter()',
+    ]);
     setTimeout(() => {
       setIsLoaded(true);
     }, 1700);

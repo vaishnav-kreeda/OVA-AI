@@ -1933,20 +1933,20 @@
   resolved "https://registry.npmjs.org/@picovoice/picovoice-react-native/-/picovoice-react-native-3.0.0.tgz"
   integrity sha512-XdOB+ShXWqsFxIvr1FlVUgKzAZaQymDobGs2lrerKmqL/117CqYMCwqdH66IB7iujBE0QREWhg5BWdoulZ09gg==
 
-"@picovoice/porcupine-react-native@*", "@picovoice/porcupine-react-native@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@picovoice/porcupine-react-native/-/porcupine-react-native-3.0.0.tgz"
-  integrity sha512-sMw4UwwzCnWyXpqlRYTiWaPlLoHoK/RqW4t+wUBAg8GxAlSD9JkRv6hWc1B5i2FPqWD0Txqm7nFDoDL6EEvNsw==
+"@picovoice/porcupine-react-native@*", "@picovoice/porcupine-react-native@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.npmjs.org/@picovoice/porcupine-react-native/-/porcupine-react-native-3.0.5.tgz"
+  integrity sha512-N5pseehN3A9zCq5+WbQDtNy7Y+PTM3nXdcMu0F9z9T04jkExuDWbPF3Ta8Uzj9Outhllj4yY2MyDKgyo9OIeqg==
 
-"@picovoice/react-native-voice-processor@*", "@picovoice/react-native-voice-processor@^1.2.0", "@picovoice/react-native-voice-processor@>= 1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@picovoice/react-native-voice-processor/-/react-native-voice-processor-1.2.0.tgz"
-  integrity sha512-zolTEo3qsqeUwY7JRslV/yhiA+oBrkeogOTxjHIEJ//yEsr7YKlI1PcqTbU5/xjmUiukh62gmwTXhosnQYdasQ==
+"@picovoice/react-native-voice-processor@*", "@picovoice/react-native-voice-processor@^1.2.3", "@picovoice/react-native-voice-processor@= 1.2.3", "@picovoice/react-native-voice-processor@>= 1.2.3":
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/@picovoice/react-native-voice-processor/-/react-native-voice-processor-1.2.3.tgz"
+  integrity sha512-GFnuKXWIOrDTPumcFkwfGaGUt2X1Vq31cU0sM4CZ9o/SomZQxJml12nr8d4uxjG03Z/eouWGN/0AcxZPdqihlw==
 
-"@picovoice/rhino-react-native@*", "@picovoice/rhino-react-native@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@picovoice/rhino-react-native/-/rhino-react-native-3.0.0.tgz"
-  integrity sha512-2oSsn8/8hLo4ke2vHg9gF7e4CNDKorgdbh+gVudfiq7eiiZhgt7KL+vj0/a4V5N2maozAHMPvrog6ecAOddgiw==
+"@picovoice/rhino-react-native@*", "@picovoice/rhino-react-native@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.npmjs.org/@picovoice/rhino-react-native/-/rhino-react-native-3.0.5.tgz"
+  integrity sha512-s2n49/qWX+ydmJIzcHlfSKho98rOxnCNxVFWPCuJEuWubi/xR45oLRKXPpiViyz/5/NKHbKLifwas3ZGm+vavA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -6831,10 +6831,10 @@ react-native-svg@^13.14.0:
     css-select "^5.1.0"
     css-tree "^1.1.3"
 
-react-native-tts@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/react-native-tts/-/react-native-tts-4.1.0.tgz"
-  integrity sha512-tvf3lQ6u9MqztUie37qoPw5YQPqi0ql1lPhDsBBs/RRA6A/H1J9X9H/qb1A0Hx0ZpjavrEdtVSqQQ2JDZvZCTQ==
+react-native-tts@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npmjs.org/react-native-tts/-/react-native-tts-4.1.1.tgz"
+  integrity sha512-VL0TgCwkUWggbbFGIXAPKC3rM1baluAYtgOdgnaTm7UYsWf/y8n5VgmVB0J2Wa8qt1dldZ1cSsdQY9iz3evcAg==
 
 react-native@*, react-native@^0.72.17, "react-native@>= 0.63", react-native@>=0.40.0:
   version "0.72.17"
