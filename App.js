@@ -2,10 +2,7 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import AnimatedSplash from 'react-native-animated-splash-screen';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import IntroScreen from './src/screens/IntroScreen';
-import HomeScreen from './src/screens/HomeScreen';
+import RootNavigator from './src/Navigation/navigationScreen';
 
 const Intro = () => {
   return (
@@ -24,8 +21,6 @@ const App = () => {
     }, 1700);
   });
 
-  const Stack = createNativeStackNavigator();
-
   return (
     <AnimatedSplash
       translucent={true}
@@ -36,15 +31,7 @@ const App = () => {
       logoWidth={150}>
       <>
         {/* <StatusBar style="light" /> */}
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}>
-            <Stack.Screen name="Intro" component={IntroScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <RootNavigator />
       </>
     </AnimatedSplash>
   );

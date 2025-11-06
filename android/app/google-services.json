@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "242122034171",
+    "project_id": "persistai-50e6f",
+    "storage_bucket": "persistai-50e6f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242122034171:android:a7d7c824aad09dbc4c595e",
+        "android_client_info": {
+          "package_name": "com.ovadrive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhAuugHf7LeIjEYkebqYKl4L7VDFPOWS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
