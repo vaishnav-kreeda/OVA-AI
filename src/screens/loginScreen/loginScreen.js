@@ -1,15 +1,51 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
+import {getApp} from '@react-native-firebase/app';
+import {getAuth, signInWithEmailAndPassword} from '@react-native-firebase/auth';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   // email login only
 
-  const onLogin = () => {
-    // TODO: integrate Firebase Auth
+  const showError = (message) => {
+    setErrorMessage(message);
+    setTimeout(() => setErrorMessage(''), 4000);
+  };
+
+  const onLogin = async () => {
+    if (!email || !password) {
+      showError('Please enter both email and password.');
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      const app = getApp();
+      const auth = getAuth(app);
+      await signInWithEmailAndPassword(auth, email.trim(), password);
+      // Navigation will be handled automatically by auth state listener in RootNavigator
+      // The stack will be reset when switching from AuthStack to AppStack
+    } catch (error) {
+      // Show the actual error message from Firebase Auth backend
+      let message = 'Unable to sign in. Please try again.';
+      
+      if (error && error.message) {
+        // Use the backend error message directly
+        message = error.message;
+      } else if (error && error.code) {
+        // Fallback to error code if message is not available
+        message = `Error: ${error.code}`;
+      }
+      
+      showError(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -42,13 +78,17 @@ const LoginScreen = ({navigation}) => {
         />
       </View>
 
-      <TouchableOpacity activeOpacity={0.9} onPress={onLogin}>
+      <TouchableOpacity activeOpacity={0.9} onPress={onLogin} disabled={submitting}>
         <LinearGradient
           colors={['#5d1df3', '#b298f1']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
           style={styles.primaryButton}>
-          <Text style={styles.primaryButtonText}>Sign In</Text>
+          {submitting ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={styles.primaryButtonText}>Sign In</Text>
+          )}
         </LinearGradient>
       </TouchableOpacity>
 
@@ -58,6 +98,22 @@ const LoginScreen = ({navigation}) => {
           <Text style={styles.link}>Sign Up</Text>
         </TouchableOpacity>
       </View>
+      {Boolean(errorMessage) && (
+        <View
+          style={{
+            position: 'absolute',
+            left: 16,
+            right: 16,
+            bottom: 20,
+            backgroundColor: '#d93025',
+            borderRadius: 8,
+            paddingVertical: 12,
+            paddingHorizontal: 16,
+            alignItems: 'center',
+          }}>
+          <Text style={{color: '#fff'}}>{errorMessage}</Text>
+        </View>
+      )}
     </View>
   );
 };
