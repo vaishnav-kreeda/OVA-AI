@@ -74,9 +74,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.ovadrive"
+    namespace "com.PersistAI"
     defaultConfig {
-        applicationId "com.ovadrive"
+        applicationId "com.PersistAI"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

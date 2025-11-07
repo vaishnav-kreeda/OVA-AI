@@ -188,7 +188,7 @@ const HomeScreen = () => {
       <View className=" px-4">
         <Text className="text-white text-2xl font-bold ">Hello,</Text>
         <Text className="text-white text-2xl font-bold mt-2">
-          My name is OvaDrive 👋
+          My name is PersistAI 👋
         </Text>
         <Text className="text-gray-400 text-lg font-bold mt-2">
           What can I help you with?

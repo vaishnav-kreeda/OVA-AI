@@ -26,7 +26,7 @@ const IntroScreen = () => {
         className="w-full h-[60%]"
       />
       <Text className="text-white text-4xl text-center font-bold">
-        Meet <Text className="text-[#8D1BF3]">OvaDrive -</Text>
+        Meet <Text className="text-[#8D1BF3]">PersistAI -</Text>
       </Text>
       <Text className="text-white text-4xl text-center font-bold">
         Your Personal AI Voice Assistant

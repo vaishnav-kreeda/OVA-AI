@@ -1,4 +1,4 @@
-package com.ovadrive;
+package com.PersistAI;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

@@ -72,7 +72,7 @@ const Signupscreen = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.headerBlock}>
         <Text style={styles.heading}>Create Account</Text>
-        <Text style={styles.subheading}>Join OvaDrive in seconds</Text>
+        <Text style={styles.subheading}>Join PersistAI in seconds</Text>
       </View>
 
       <Text style={styles.label}>Full Name</Text>
