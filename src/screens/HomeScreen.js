@@ -15,6 +15,8 @@ import {
   PorcupineManager,
   BuiltInKeywords,
 } from '@picovoice/porcupine-react-native';
+import micOffImage from '../assets/micOff.png';
+import micOnImage from '../assets/micOn.gif';
 
 const HomeScreen = () => {
   const [isMicOn, setIsMicOn] = useState(false);
@@ -294,16 +296,20 @@ const HomeScreen = () => {
                 onPress={() => stopRecording()}
                 style={({pressed}) => pressed && {opacity: 0.5}}>
                 <Image
-                  source={require('../assets/micOn.gif')}
-                  className="w-[130px] h-[130px]"></Image>
+                  source={micOnImage}
+                  className="w-[130px] h-[130px]"
+                  resizeMode="contain"
+                />
               </Pressable>
             ) : (
               <Pressable
                 onPress={() => startRecording()}
                 style={({pressed}) => pressed && {opacity: 0.5}}>
                 <Image
-                  source={require('../assets/micOff.png')}
-                  className="w-[122px] h-[122px] mb-2"></Image>
+                  source={micOffImage}
+                  className="w-[122px] h-[122px] mb-2"
+                  resizeMode="contain"
+                />
               </Pressable>
             )}
           </Pressable>

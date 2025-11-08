@@ -1,14 +1,26 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import {getApp} from '@react-native-firebase/app';
-import {getAuth, createUserWithEmailAndPassword, updateProfile} from '@react-native-firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from '@react-native-firebase/auth';
 
 const Signupscreen = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -46,6 +58,15 @@ const Signupscreen = ({navigation}) => {
         await updateProfile(userCredential.user, {
           displayName: name.trim(),
         });
+
+        try {
+          await sendEmailVerification(userCredential.user);
+        } catch (verificationError) {
+          console.warn('Failed to send verification email:', verificationError);
+          showError(
+            'Account created, but we could not send a verification email. Please try resending from the next screen.',
+          );
+        }
       }
 
       // Navigation will be handled automatically by auth state listener in RootNavigator
@@ -97,14 +118,24 @@ const Signupscreen = ({navigation}) => {
       />
 
       <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="*************"
-        placeholderTextColor="#70757a"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+      <View style={styles.passwordRow}>
+        <TextInput
+          style={[styles.input, styles.passwordInput]}
+          placeholder="*************"
+          placeholderTextColor="#70757a"
+          secureTextEntry={!showPassword}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity
+          style={styles.eyeButton}
+          onPress={() => setShowPassword((prev) => !prev)}
+          accessibilityLabel={showPassword ? 'Hide password' : 'Show password'}>
+          <Text style={[styles.eyeButtonText, showPassword && styles.eyeButtonTextActive]}>
+            {showPassword ? 'HIDE' : 'SHOW'}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity activeOpacity={0.9} onPress={onSignup} disabled={submitting}>
         <LinearGradient

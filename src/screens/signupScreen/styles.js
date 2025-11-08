@@ -33,6 +33,35 @@ const styles = StyleSheet.create({
     height: 56,
     marginBottom: 20,
   },
+  passwordRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    position: 'relative',
+  },
+  passwordInput: {
+    flex: 1,
+    marginBottom: 0,
+    paddingRight: 48,
+  },
+  eyeButton: {
+    position: 'absolute',
+    right: 16,
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+  },
+  eyeButtonText: {
+    color: '#9aa6b2',
+    fontSize: 12,
+    fontWeight: '600',
+    letterSpacing: 0.5,
+  },
+  eyeButtonTextActive: {
+    color: '#ffffff',
+  },
   primaryButton: {
     height: 56,
     borderRadius: 18,

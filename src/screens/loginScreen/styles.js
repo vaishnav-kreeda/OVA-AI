@@ -34,11 +34,32 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   passwordRow: {
-    position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 18,
+    position: 'relative',
   },
   passwordInput: {
-    paddingRight: 18,
+    flex: 1,
+    paddingRight: 48,
+  },
+  eyeButton: {
+    position: 'absolute',
+    right: 16,
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+  },
+  eyeButtonText: {
+    color: '#9aa6b2',
+    fontSize: 12,
+    fontWeight: '600',
+    letterSpacing: 0.5,
+  },
+  eyeButtonTextActive: {
+    color: '#ffffff',
   },
   // removed remember/forgot and social rows for a cleaner email login
   link: {
@@ -59,6 +80,21 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: '#ffffff',
     fontWeight: '700',
+    fontSize: 16,
+  },
+  googleButton: {
+    height: 56,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#5d1df3',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -16,
+    marginBottom: 32,
+  },
+  googleButtonText: {
+    color: '#5d1df3',
+    fontWeight: '600',
     fontSize: 16,
   },
   

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {ActivityIndicator, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {getApp} from '@react-native-firebase/app';
@@ -8,6 +9,7 @@ import IntroScreen from '../screens/IntroScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/loginScreen/loginScreen';
 import Signupscreen from '../screens/signupScreen/signUpScreen';
+import EmailVerificationScreen from '../screens/signupScreen/EmailVerificationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,21 +26,46 @@ const AuthStack = () => (
 );
 
 // Authenticated Stack (Home only - no back navigation to login)
-const AppStack = () => (
-  <Stack.Navigator
-    screenOptions={{
-      headerShown: false,
-      gestureEnabled: false, // Disable swipe back gesture
-    }}>
-    <Stack.Screen 
-      name="Home" 
-      component={HomeScreen}
-      options={{
-        headerLeft: null, // Remove back button
-      }}
-    />
-  </Stack.Navigator>
-);
+const AppStack = () => {
+  const [initialRoute, setInitialRoute] = useState(null);
+
+  useEffect(() => {
+    const app = getApp();
+    const auth = getAuth(app);
+    const currentUser = auth.currentUser;
+
+    setInitialRoute(currentUser?.emailVerified ? 'Home' : 'EmailVerification');
+  }, []);
+
+  if (!initialRoute) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0a0b12'}}>
+        <ActivityIndicator size="large" color="#5d1df3" />
+      </View>
+    );
+  }
+
+  return (
+    <Stack.Navigator
+      initialRouteName={initialRoute}
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: false, // Disable swipe back gesture
+      }}>
+      <Stack.Screen
+        name="EmailVerification"
+        component={EmailVerificationScreen}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerLeft: null, // Remove back button
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export const RootNavigator = () => {
   const [user, setUser] = useState(null);

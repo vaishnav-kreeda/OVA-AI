@@ -12,7 +12,12 @@
           "package_name": "com.PersistAI"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "665821253047-r5r044b104bbdanqpfb22o78o4p3l1ej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBIRxJDQ1cP0dUTZzc1-hTmoODGhzsaDnw"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665821253047-r5r044b104bbdanqpfb22o78o4p3l1ej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
